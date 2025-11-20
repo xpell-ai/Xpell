@@ -111,3 +111,6 @@ typings/
 public2/
 
 .vscode/
+
+# Mac files
+.DS_Store

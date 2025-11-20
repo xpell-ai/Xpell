@@ -25,30 +25,6 @@ import XParser from "./XParser"
 import XModule from "./XModule"
 import {XEventManager as XEM} from  "./XEventManager"
 
-
-
-
-
-
-
-// class XpellMainModule extends XModule {
-
-    
-
-//     constructor(data) {
-//         const defaults = {name:"xpell"}
-//         super(data,defaults)
-//     }
-
-//     _info(xcmd:XCommand) {
-//         _xlog.log("Xpell Engine V:" + Xpell.version)
-//     }
-
-//     _loadModule(xcmd:XCommand) {
-//         _xlog.log(xcmd.params["name"])
-//     }
-// }
-
 /**
  * @class  Xpell main engine
  */

@@ -297,6 +297,8 @@ export class XUIObject extends XObject {
         if (this._dom_object instanceof HTMLElement) {
             this._dom_object.classList.add(className)
         }
+        if(!this.class) this.class = className
+        else if((this.class as string).indexOf(className) == -1) this.class += " " + className
     }
 
     /**

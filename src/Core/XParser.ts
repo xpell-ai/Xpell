@@ -1,5 +1,4 @@
 import XCommand from "./XCommand"
-import * as _XC from "./XConst"
 
 /**
  * Xpell Parser - Parse XML, HTML, Raw Text & Json to Xpell Command
@@ -231,7 +230,7 @@ export class XParser {
     static xpellify(XP2Json:{[k:string]:any}):any  {
         const tkeys = Object.keys(XP2Json)
         let outputXpell:any = {_type:tkeys[0]}
-        outputXpell[_XC.NODES.children] = [] // child's xpells
+        outputXpell["_children"] = [] // child's xpells
         const firstObject = XP2Json[tkeys[0]]
         const foKeys = Object.keys(firstObject)
         
@@ -241,7 +240,7 @@ export class XParser {
                 const lob:{[k:string]:any} ={}
                 lob[iKey]=firstObject[iKey]
                 
-                outputXpell[_XC.NODES.children].push(XParser.xpellify(lob))
+                outputXpell["_children"].push(XParser.xpellify(lob))
             }
         })
         return outputXpell
@@ -278,7 +277,7 @@ export class XParser {
         const _html_tag_attr = xmlNode.nodeName
         let forceXhtmlOnChildren = forceXhtml
         if(forceXhtml) { 
-            outputXpell[_XC.NODES.type] = "xhtml"
+            outputXpell["_type"] = "xhtml"
             outputXpell["_html_ns"] = 'http://www.w3.org/2000/svg'
         }else {
             outputXpell["_type"] = (cMap.elements[<"div">root_name]) ?cMap.elements[<"div">root_name] : root_name  //html element to xpell object name
@@ -293,10 +292,10 @@ export class XParser {
         if (xmlNode?.firstChild?.nodeValue) {
             outputXpell["text"] = xmlNode?.firstChild.nodeValue.trim();
         }
-        if(outputXpell[_XC.NODES.type] == "xhtml") {
+        if(outputXpell["_type"] == "xhtml") {
             outputXpell["_html_tag"] = _html_tag_attr
         }
-        else if(outputXpell[_XC.NODES.type] == "svg" ) {
+        else if(outputXpell["_type"] == "svg" ) {
             forceXhtmlOnChildren = true
             outputXpell["_html_ns"] = 'http://www.w3.org/2000/svg'
         }
@@ -304,7 +303,7 @@ export class XParser {
             for(let i=0;i<xmlNode.childNodes.length;++i)  {
                 const node = (xmlNode.childNodes[i])
                 if(!node.nodeName.startsWith("#")) {
-                    outputXpell[_XC.NODES.children].push(XParser.xml2Xpell(node,forceXhtmlOnChildren))
+                    outputXpell["_children"].push(XParser.xml2Xpell(node,forceXhtmlOnChildren))
                 }
             }   
         }
