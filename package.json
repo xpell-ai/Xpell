@@ -1,51 +1,51 @@
 {
   "name": "xpell",
-  "version": "1.4.82",
-  "description": "Xpell UI JS Framework",
+  "version": "2.0.0-alpha.0",
+  "description": "Xpell.ai CLI – create and manage Xpell.ai projects",
+  "type": "module",
+  "bin": {
+    "xpell": "./dist/bin.js"
+  },
   "files": [
     "dist",
-    "src",
-    "types",
-    "docs"
+    "templates",
+    "README.md"
   ],
-  "types": "./dist/index.d.ts",
-  "module": "./dist/xpell.es.js",
-  "main": "./dist/xpell.cjs.js",
-  "exports": {
-    ".": {
-      "import": "./dist/xpell.es.js",
-      "require": "./dist/xpell.umd.js"
-    }
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite .",
-    "docs": "typedoc --options ./typedoc.json --tsconfig ./",
-    "types": "npx -p typescript tsc index.ts -t es2021 --declaration --allowJs --emitDeclarationOnly -moduleResolution node --outDir types",
-    "build": "vite build",
-    "build:types": "vite build && tsc --project tsconfig.types.json"
+    "dev": "tsx src/bin.ts",
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "prepare": "tsc -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "author": "Tamir Fridman <fridman.tamir@gmail.com> (https://github.com/fridman-tamir)",
-  "license": "GPL-3",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AIMEVerse/Xpell"
+    "url": "git+https://github.com/xpell-ai/Xpell.git"
   },
+  "bugs": {
+    "url": "https://github.com/xpell-ai/Xpell/issues"
+  },
+  "homepage": "https://github.com/xpell-ai/Xpell#readme",
+  "keywords": [
+    "xpell",
+    "xpell.ai",
+    "cli",
+    "ai",
+    "agents",
+    "scaffolding",
+    "generator"
+  ],
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.47.2",
-    "@types/node": "^18.0.6",
-    "@types/three": "^0.142.0",
-    "draco3d": "^1.5.6",
-    "typedoc": "^0.25.12",
-    "typedoc-material-theme": "^1.0.2",
-    "typedoc-plugin-markdown": "^3.17.1",
-    "vite": "^3.0.2",
-    "vite-plugin-dts": "^3.7.2"
-  },
-  "dependencies": {
-    "animate.css": "^4.1.1",
-    "cannon-es": "^0.20.0",
-    "three": "^0.143.0",
-    "three-to-cannon": "^4.2.0"
+    "@types/node": "^22.19.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
